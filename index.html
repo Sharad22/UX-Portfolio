@@ -153,13 +153,15 @@ section{padding-top:6rem;padding-bottom:6rem;}
 .about-body p{font-size:.975rem;color:var(--muted2);line-height:1.95;margin-bottom:1.1rem;}
 .about-body p strong{color:var(--text);font-weight:500;}
 .about-body p.lead{font-size:1.1rem;color:var(--muted2);font-weight:300;line-height:1.85;}
-.about-photo-wrap{display:flex;flex-direction:column;gap:1rem;position:sticky;top:80px;}
+.about-grid{display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:stretch;}
+.about-body{display:flex;flex-direction:column;justify-content:space-between;}
+.about-photo-wrap{position:sticky;top:80px;height:100%;}
 .about-photo-frame{
   position:relative;
   width:100%;
-  aspect-ratio:4/5;
+  height:100%;
+  min-height:300px;
 }
-/* offset shadow box — accent themed */
 .about-photo-frame::before{
   content:'';
   position:absolute;

@@ -19,6 +19,51 @@
   --pad:clamp(1.25rem,6vw,6rem);
 }
 html{scroll-behavior:smooth;}
+
+/* ── SCROLL REVEAL ── */
+.reveal{
+  opacity:0;
+  transform:translateY(60px) scale(0.98);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+  will-change:opacity,transform;
+}
+.reveal.active{opacity:1;transform:translateY(0) scale(1);}
+.reveal-left{
+  opacity:0;
+  transform:translateX(-50px);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+}
+.reveal-left.active{opacity:1;transform:translateX(0);}
+.reveal-right{
+  opacity:0;
+  transform:translateX(50px);
+  transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1);
+}
+.reveal-right.active{opacity:1;transform:translateX(0);}
+
+/* stagger delays */
+.reveal-d1{transition-delay:.1s;}
+.reveal-d2{transition-delay:.2s;}
+.reveal-d3{transition-delay:.3s;}
+.reveal-d4{transition-delay:.4s;}
+.reveal-d5{transition-delay:.5s;}
+
+/* section entrance — slides up from slightly below */
+.sec-enter{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1s cubic-bezier(.22,1,.36,1), transform 1s cubic-bezier(.22,1,.36,1);
+}
+.sec-enter.active{opacity:1;transform:translateY(0);}
+
+/* parallax layer */
+.parallax-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 70% 50%, rgba(240,192,64,.04) 0%, transparent 70%);
+  transform:translateY(0);
+  will-change:transform;
+}
+
 body{font-family:'DM Sans',system-ui,sans-serif;color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:15px;background:var(--black);}
 @media(pointer:fine){body{cursor:none;}}
 @media(pointer:coarse){#cdot,#cring{display:none;}}
@@ -244,6 +289,7 @@ nav{
 
   <!-- HERO — BLACK -->
   <div class="hero-wrap sec-black">
+    <div class="parallax-bg" id="hero-parallax"></div>
     <div class="avail"><span class="adot"></span>Available for work</div>
     <div class="hero-eyebrow">UX Designer · Bilaspur, India</div>
     <h1 class="hero-h1"><span class="s">Sharadindu</span><span class="f">Guin</span></h1>
@@ -262,17 +308,17 @@ nav{
 
   <!-- ABOUT — GREY -->
   <div id="about" class="sec-wrap sec-grey">
-    <div class="sec-tag">About me</div>
-    <h2 class="sec-title">Designing experiences<br>people actually remember.</h2>
-    <div class="sec-div"></div>
+    <div class="sec-tag reveal reveal-d1">About me</div>
+    <h2 class="sec-title reveal reveal-d2">Designing experiences<br>people actually remember.</h2>
+    <div class="sec-div reveal reveal-d2"></div>
     <div class="about-grid">
-      <div class="about-body">
+      <div class="about-body reveal-left">
         <p class="lead">Hi, I'm Sharadindu — a UX Designer who believes the best interfaces are the ones that get out of the way and let people do what they came to do.</p>
         <p>I work at the intersection of <strong>user psychology, business goals, and visual clarity</strong>. My process starts with deep research and ends with designs that are not just beautiful — but purposeful and tested.</p>
         <p>From early-stage startups to redesigning established products, I've tackled everything from mobile apps and SaaS dashboards to landing pages and design systems.</p>
         <p>When I'm not designing, I'm probably <strong>reverse-engineering why some apps feel effortless</strong> and others feel like a chore — and taking notes.</p>
       </div>
-      <div class="about-photo-wrap">
+      <div class="about-photo-wrap reveal-right">
         <div class="about-photo-frame">
           <div class="about-photo-inner">
             <img src="https://drive.google.com/thumbnail?id=1VyRWMvLHp-QLDABOi3xnFgu4emgQPSzT&sz=w800" alt="Sharadindu Guin" class="about-photo"/>
@@ -281,43 +327,43 @@ nav{
       </div>
     </div>
     <div class="skills" id="skills">
-      <div class="skill-row"><span class="skill-name">UX Research</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="92%"></div></div></div>
-      <div class="skill-row"><span class="skill-name">Interaction Design</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="88%"></div></div></div>
-      <div class="skill-row"><span class="skill-name">Figma & Prototyping</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="95%"></div></div></div>
-      <div class="skill-row"><span class="skill-name">Visual Design</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="80%"></div></div></div>
-      <div class="skill-row"><span class="skill-name">Design Systems</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="85%"></div></div></div>
-      <div class="skill-row"><span class="skill-name">Usability Testing</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="90%"></div></div></div>
+      <div class="skill-row reveal reveal-d1"><span class="skill-name">UX Research</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="92%"></div></div></div>
+      <div class="skill-row reveal reveal-d2"><span class="skill-name">Interaction Design</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="88%"></div></div></div>
+      <div class="skill-row reveal reveal-d3"><span class="skill-name">Figma & Prototyping</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="95%"></div></div></div>
+      <div class="skill-row reveal reveal-d1"><span class="skill-name">Visual Design</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="80%"></div></div></div>
+      <div class="skill-row reveal reveal-d2"><span class="skill-name">Design Systems</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="85%"></div></div></div>
+      <div class="skill-row reveal reveal-d3"><span class="skill-name">Usability Testing</span><div class="skill-bar-wrap"><div class="skill-bar" data-w="90%"></div></div></div>
     </div>
   </div>
 
   <!-- PROCESS — BLACK -->
   <div id="process" class="sec-wrap sec-black">
-    <div class="sec-tag">My process</div>
-    <h2 class="sec-title">How I work.</h2>
-    <div class="sec-div"></div>
+    <div class="sec-tag reveal reveal-d1">My process</div>
+    <h2 class="sec-title reveal reveal-d2">How I work.</h2>
+    <div class="sec-div reveal reveal-d2"></div>
     <div class="proc-grid">
-      <div class="proc-card">
+      <div class="proc-card reveal reveal-d1">
         <div class="proc-card-glow"></div>
         <div class="proc-card-top"><div class="proc-step-num">01</div><div class="proc-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--y)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div></div>
         <div class="proc-title">Discover</div>
         <p class="proc-desc">User interviews, competitive audits, and stakeholder alignment. I listen more than I design early on.</p>
         <div class="proc-line"></div>
       </div>
-      <div class="proc-card">
+      <div class="proc-card reveal reveal-d2">
         <div class="proc-card-glow"></div>
         <div class="proc-card-top"><div class="proc-step-num">02</div><div class="proc-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--y)"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div></div>
         <div class="proc-title">Define</div>
         <p class="proc-desc">Synthesising research into clear problem statements, personas, and opportunity maps. Evidence over assumptions.</p>
         <div class="proc-line"></div>
       </div>
-      <div class="proc-card">
+      <div class="proc-card reveal reveal-d3">
         <div class="proc-card-glow"></div>
         <div class="proc-card-top"><div class="proc-step-num">03</div><div class="proc-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--y)"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div></div>
         <div class="proc-title">Design</div>
         <p class="proc-desc">From rough sketches to high-fidelity Figma. Prototype early, test often — not just at the end.</p>
         <div class="proc-line"></div>
       </div>
-      <div class="proc-card">
+      <div class="proc-card reveal reveal-d4">
         <div class="proc-card-glow"></div>
         <div class="proc-card-top"><div class="proc-step-num">04</div><div class="proc-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--y)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div></div>
         <div class="proc-title">Deliver</div>
@@ -329,24 +375,24 @@ nav{
 
   <!-- WORK — GREY -->
   <div id="work" class="sec-wrap sec-grey">
-    <div class="sec-tag">Selected work</div>
-    <h2 class="sec-title">Case studies.</h2>
-    <div class="sec-div"></div>
+    <div class="sec-tag reveal reveal-d1">Selected work</div>
+    <h2 class="sec-title reveal reveal-d2">Case studies.</h2>
+    <div class="sec-div reveal reveal-d2"></div>
     <div class="tiles-grid" id="tiles"></div>
   </div>
 
   <!-- CONTACT — BLACK -->
   <div id="contact" class="sec-wrap sec-black">
-    <div class="sec-tag">Get in touch</div>
-    <h2 class="sec-title">Let's work together.</h2>
-    <div class="sec-div"></div>
-    <p class="contact-intro">Have a project in mind or just want to talk design? I'm always open to new opportunities and interesting conversations.</p>
+    <div class="sec-tag reveal reveal-d1">Get in touch</div>
+    <h2 class="sec-title reveal reveal-d2">Let's work together.</h2>
+    <div class="sec-div reveal reveal-d2"></div>
+    <p class="contact-intro reveal reveal-d3">Have a project in mind or just want to talk design? I'm always open to new opportunities and interesting conversations.</p>
     <div class="contact-grid">
-      <a href="mailto:guinsharadindu0@gmail.com" class="contact-card">
+      <a href="mailto:guinsharadindu0@gmail.com" class="contact-card reveal reveal-d3">
         <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
         <div><div class="contact-label">Email me</div><div class="contact-value">guinsharadindu0@gmail.com</div></div>
       </a>
-      <a href="tel:+919131025086" class="contact-card">
+      <a href="tel:+919131025086" class="contact-card reveal reveal-d4">
         <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
         <div><div class="contact-label">Call me</div><div class="contact-value">+91 91310 25086</div></div>
       </a>
@@ -354,7 +400,7 @@ nav{
   </div>
 
   <!-- FOOTER — GREY -->
-  <div class="footer-wrap sec-grey">
+  <div class="footer-wrap sec-grey reveal">
     <div class="fl">© 2025 <strong>Sharadindu Guin</strong> · Bilaspur, India</div>
     <div class="fr">
       <a href="https://www.linkedin.com/in/sharadindu-guin-574772211/" target="_blank">LinkedIn</a>
@@ -394,6 +440,40 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.le
 (function l(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(l);})();
 function hov(el){if(!el)return;el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));}
 function snav(e,id){e.preventDefault();document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+
+// ── SCROLL REVEAL ──────────────────────────────
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('active');revealObs.unobserve(e.target);}
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>revealObs.observe(el));
+
+// ── PARALLAX ON SCROLL ─────────────────────────
+const heroBg=document.getElementById('hero-parallax');
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  if(heroBg) heroBg.style.transform=`translateY(${sy*0.4}px)`;
+  // tile stagger on scroll
+  document.querySelectorAll('.tile:not(.revealed)').forEach((tile,i)=>{
+    const r=tile.getBoundingClientRect();
+    if(r.top<window.innerHeight*0.92){
+      setTimeout(()=>{
+        tile.style.opacity='1';
+        tile.style.transform='translateY(0)';
+        tile.classList.add('revealed');
+      },i*80);
+    }
+  });
+},{passive:true});
+
+// init tiles hidden
+document.querySelectorAll('.tile').forEach(t=>{
+  t.style.opacity='0';
+  t.style.transform='translateY(40px)';
+  t.style.transition='opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+});
+
 
 const tilesEl=document.getElementById('tiles');
 P.forEach(p=>{
